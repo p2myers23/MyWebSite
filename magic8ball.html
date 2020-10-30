@@ -1,0 +1,66 @@
+<html>
+<head>
+<script languague = "JavaScript">
+var answers = ["yes...", "no...", "maybe...", "probably...not...", "never...", "absolutely...", "maybe...not...", "probably...", "try again...", "depends..."];
+var clipList = ["sounds/8ball.mp3"];
+    
+function random()
+{
+    //alert("hello")
+    var rand = -1;
+    var myAnswer = document.getElementById("answer");
+    var userQ = document.getElementById("question");
+    var clip = document.getElementById("myAudio");
+    
+    
+    
+    
+    rand = Math.random();
+    rand = rand * answers.length;
+    rand = Math.floor(rand);
+   
+    if(userQ.value.length == 0)
+    {
+     myAnswer.value = "ask a question first..."   
+    }
+    else
+    {
+    myAnswer.value = answers[rand];
+    clip.src = clipList
+    clip.play();
+    } 
+}
+    
+function reset() {
+    document.getElementById("answer").value = "";
+    document.getElementById("question").value = "";
+
+}
+       
+</script>
+</head>
+    <body background="images/blackice.jpg" link="white" vlink="white">
+<center>
+<h1>Magic 8 Ball</h1>
+    
+    <font color="white">
+    <br/>
+  
+    <img src="images/8ball.png" width="300"/>
+    <br/>
+    <br/>
+    <p> Welcome to the Magic 8 Ball. Ask any question on the left hand text box to recieve an answer on the right. Your question will be answered in full truth by the power of the Magic 8 Ball. </p>
+    <br/>
+        
+    <input id="question" type=“text” size=”80” onfocusin = "reset()"/>
+    <input type="button" value="Click" onClick="random()"/>
+    <input id="answer" type=“text” size=”80” readonly = true/>
+    <audio id="myAudio"> </audio>
+    <br/>
+    <p> <a href="index.html">Click here to return home. </a>
+        
+    </font>
+</center>
+</body>
+
+</html>
