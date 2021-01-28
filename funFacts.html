@@ -1,0 +1,94 @@
+<html> 
+<head> 
+<script language="JavaScript">
+
+/*************** Algorithm ******************
+1. find your topic of the fun facts
+2. create your objects and corresponding fun facts in separate lists
+3. display the first element of the first list in a droppable list to the left of the displayed information
+4. have your first list be displayed in a list seen by the viewer
+5. close the second text box and display corresponding fun fact when user clicks an object
+6. remove text in text box when clicking another different object
+7.
+8.
+9 
+
+*/
+
+
+var group = ["-- Choose a Food --", "apple", "carrot", "banana", "berry", "steak", "chicken", "pork", "duck"];
+
+var facts = ["-- No food selected --", "there are 7,500 apple varieties", "carrots can come in orange, purple, red, black, white, and yellow", "bananas float in water", "bananas are actually classified as berries", "translated, steak means 'meat on a stick'", "millions of pounds of chicken wings are eaten during Super Bowl weekend", "an average American will eat 30 pigs in their lifetime", "France and China are the largest consumers of duck"];
+
+function loadData()
+{
+	var sum = 0;
+	for(var i = 0; i<group.length; i++)
+    {
+        var daList = document.getElementById("prez");
+  		var option = document.createElement("option");
+  		option.text = group[i];
+  		daList.add(option);
+    }
+}
+
+// This function identifies which element from the drop down has been selected. It calls the 
+// getIndex function to acquire what the index of the selected item. Then it displays the 
+// corresponding element in the facts list. (This is diplayed in the textbox on the web page.)
+function start()
+{
+	// We'll code this second
+   var food = document.getElementById("prez")
+   var daIndex = getIndex(food.value)
+   
+   if(daIndex > -1)
+   {
+      document.getElementById("funFact").value = facts[daIndex]
+
+   }
+   else
+   {
+      alert("invalid selection")
+   }
+}
+   
+
+// This function searches the group array for the element passed as a parameter
+// and returns the index number for that element in the array.
+function getIndex(d)
+{
+   var answer = -1
+   for(var i = 0; i < group.length; i++)
+   {
+      if(group[i] == d)
+      {
+         answer = i;
+      }
+   }
+   
+   return answer 
+}
+
+
+
+</script>
+</head>
+<body onload="loadData()" background="images/blackice.jpg" link="black" vlink="black"> 
+<center>
+<h1>Food Fun Facts</h1>
+<a href="index.html">Click here to go to the Index Page. </a>
+
+<br/><br/>
+<table border = 3>
+	<tr>
+		<td>  	<select name="p1" id="prez"></select>	</td>
+		<td>	<input id="funFact" type="text" size="80"/> </td>
+	</tr>
+</table>
+<br/><br/>
+<input type="button" value="click" onclick="start()"/>
+</center>
+
+
+</body>
+</html>
