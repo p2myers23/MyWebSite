@@ -1,0 +1,95 @@
+<html> 
+<head> 
+<script language="JavaScript">
+
+/*************** Algorithm ******************
+1. create the questions and answers lists
+2. use document.getElementById to change the value of the question text box to a question
+3. Increase index by 1 every time the button is clicked
+4. refresh the index once it is higher than the amount of questions
+5. for each question collect what the user puts into the answer text box
+6. check to see if the user's answer is correct
+7. if the user's answer is correct add 1 to score
+8  repeat the the entire process
+
+*/
+
+
+var questions = ["What is the best color?", "What is the best food?", "What is the best sport?", "Who is the best President?", "What is the best car?", "What is the best animal?", "What is the best clothing brand?", "What is the best state?", "Who is the best athlete?"];
+
+var answers = ["red", "pasta", "curling", "Obama", "mclaren", "cat", "Vans", "Hawaii", "Lebron"];
+
+var index = 0;
+
+var score = 0
+
+
+// Create code in displayQuestion that will display the contents of the questions array, one 
+// element at a time. After the last element is displayed, the program should display the first
+// element again.
+function displayQuestion()
+{
+   //alert("hello")
+   document.getElementById("answer").style.visibility = "visible"
+       document.getElementById("question").style.visibility = "visible"
+
+
+   document.getElementById("question").value = questions[index]
+    
+   
+   if(index == 9)
+   {
+       index = 0
+       document.getElementById("answer").value = ""
+       document.getElementById("question").value = "Score is " + score + " out of 9"
+       
+       
+   }
+}
+
+// This function will first acquire the user's answer (from the textbox with the ID "answer". Then this function will pass that to the checkAnswer function (note: that there is a parameter.) The checkAnswer will return a true or a false. If that function returns true, then the score variable will increase by 1, and an alert should pop up saying "Correct" or something positive. If the checkAnswer function comes back false, then score doesn't increase but an alert should announce "incorect." or something similar. 
+function updateScore()
+{
+    
+    var wordBox = document.getElementById("answer")
+    if(wordBox.value == answers[index])
+    {
+        document.getElementById("question").value = "Correct"
+        document.getElementById("answer").value = ""
+        index++
+        score++       
+    }
+    else
+    {
+        document.getElementById("question").value = "Incorrect: Correct answer is " + answers[index]
+        document.getElementById("answer").value = ""
+        index++
+    }
+}
+
+</script>
+</head>
+<body background="images/blackice.jpg" link="white" vlink="white"><center>
+<h1>Opinion Quiz</h1>
+<a href="index.html">Click here to go to the Index 
+    Page. </a>    <br/><br/>
+    After answering click out of the text box before going to the next question.
+
+<br/><br/>
+<table border = 3>
+	<tr>
+		<td>  	<input id="question" type="text" size="70" style="visibility:hidden" readonly = true/>	</td>
+	</tr>
+	<tr height = "12"><td></td>
+	</tr>
+	<tr>
+		<td>	<input id="answer" type="text" size="70" style="visibility:hidden" onfocusout="updateScore()"/> </td>
+	</tr>
+</table>
+<br/><br/>
+<input type="button" value="Next Question" onclick="displayQuestion()"/>
+</center>
+
+
+</body>
+</html>
